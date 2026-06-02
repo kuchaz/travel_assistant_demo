@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Assistant Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div>
+        <h1>Conversational Travel Assistant Demo</h1>
+        <p>A simple HTML + JS + Node demo for personalized itinerary planning.</p>
+      </div>
+      <div class="status-badge" id="statusBadge">Checking AI...</div>
+    </header>
+
+    <main class="layout">
+      <section class="card left-panel">
+        <h2>Travel Preferences</h2>
+        <p class="subtext">Set the trip information, then generate a stable itinerary snapshot for the chat window.</p>
+
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <select id="destination"></select>
+          <p class="small-note" id="destinationIntro"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="days">Number of Days</label>
+          <input id="days" type="number" min="1" max="7" value="3" />
+        </div>
+
+        <div class="form-group">
+          <label>Budget Level</label>
+          <div class="button-row" id="budgetButtons">
+            <button class="choice-btn" data-budget="low">Low</button>
+            <button class="choice-btn active" data-budget="medium">Medium</button>
+            <button class="choice-btn" data-budget="high">High</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Interests</label>
+          <div class="button-grid" id="interestButtons">
+            <button class="choice-btn active" data-interest="food">Food</button>
+            <button class="choice-btn active" data-interest="culture">Culture</button>
+            <button class="choice-btn" data-interest="nature">Nature</button>
+            <button class="choice-btn" data-interest="shopping">Shopping</button>
+          </div>
+          <p class="small-note">If no interest is selected, the app automatically falls back to Culture and Food.</p>
+        </div>
+
+        <button class="main-btn" id="generateBtn">Generate Demo Itinerary</button>
+      </section>
+
+      <section class="right-panel">
+        <div class="card">
+          <h2>Generated Itinerary</h2>
+          <p class="subtext">The itinerary shown here and the chat context always stay in sync.</p>
+          <div id="itineraryContainer" class="empty-box">
+            No itinerary yet. Click <strong>Generate Demo Itinerary</strong> to create a sample plan.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>AI Chat Window</h2>
+          <p class="subtext">This uses your Node backend. If a DeepSeek API key is configured, the reply comes from DeepSeek. Otherwise it uses a local fallback.</p>
+          <div class="chat-box" id="chatBox"></div>
+          <div class="chat-input-row">
+            <input type="text" id="chatInput" placeholder="Ask something like: Improve day 2 for food lovers" />
+            <button class="send-btn" id="sendBtn">Send</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
